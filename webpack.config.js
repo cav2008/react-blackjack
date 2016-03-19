@@ -2,14 +2,14 @@ var webpack = require('webpack');
 var path = require('path');
 
 var BUILD_PATH = path.resolve(__dirname, 'dist');
-var APP_PATH = path.resolve(__dirname, 'src/app');
+var APP_PATH = path.resolve(__dirname, 'src/app/components');
 
 var config = {
   // entry for server and main jsx file
   entry: [
     'webpack-dev-server/client?http://localhost:9000',
     'webpack/hot/dev-server',
-    APP_PATH + '/app.jsx'
+    APP_PATH + '/table.jsx'
   ],
   // output for bundle file and local server path
   output: {
