@@ -9,6 +9,7 @@ export default class Deck {
     this.suits = ['s', 'd', 'c', 'h'];
     this.value = ['2', '3', '4', '5', '6', '7', '8', '9', '10', 'j', 'q', 'k', 'a'];
 
+
     this.deck = this.generateDeck();
   }
 
