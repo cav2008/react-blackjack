@@ -11,7 +11,7 @@ export default class ShuffleButton extends React.Component {
   render() {
     return (
       <div className="shuffle">
-        <button className="btn btn-info" onClick={this.shuffleCards.bind(this)}>Shuffle deck</button>
+        <button className="btn btn-info" onClick={this.shuffleCards.bind(this)}>Shuffle</button>
       </div>
     );
   }

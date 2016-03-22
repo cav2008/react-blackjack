@@ -13,6 +13,9 @@ export default class Deck {
     this.deck = this.generateDeck();
   }
 
+  /**
+   * Create a new deck
+   */
   generateDeck() {
     let deck = [];
 

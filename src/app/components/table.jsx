@@ -36,7 +36,8 @@ class Table extends React.Component {
 
   /**
    * deal card function, acts as game start
-   * figure out the turns
+   * only deal cards if it is inital turn, there are at least 20 cards at the start and all player hands are empty
+   * otherwise the deal button turns in to clear hand to set up next game
    */
   deal() {
     console.log('deal',this.state.clearHand);
@@ -69,6 +70,9 @@ class Table extends React.Component {
     }
   }
 
+  /**
+   * function for player draw card hit
+   */
   hit() {
     if(this.state.turn === 1) {
       this.dealCard(this.state.playerHand, 'playerHand');
@@ -79,6 +83,9 @@ class Table extends React.Component {
     }
   }
 
+  /**
+   * function for player stick and dealers turn
+   */
   stick() {
     console.log('---------STICK----------');
 
@@ -95,6 +102,7 @@ class Table extends React.Component {
       let dealerHandValue = this.game.calculateHand(this.state.dealerHand);
       console.log('dealer hand', dealerHandValue);
 
+      // detemine outcome of dealer's final hand
       if(dealerHandValue > 21 || playerHandValue > dealerHandValue) {
         this.gameOver('player');
       }
@@ -107,6 +115,9 @@ class Table extends React.Component {
     }
   }
 
+  /**
+   * method to reset turn and register scores
+   */
   gameOver(winner) {
     if(winner === 'player') {
       this.setState({playerScore: ++this.state.playerScore});
@@ -124,12 +135,16 @@ class Table extends React.Component {
     console.log(this.state.playerScore, this.state.dealerScore);
   }
 
+  /**
+   * Clears all hands
+   */
   clearHand() {
-    console.log('reset');
     this.setState({dealerHand: [], playerHand: [], clearHand: true, turn: 0});
-    console.log(this.state.clearHand);
   }
 
+  /**
+   * Generate a new deck (shuffle)
+   */
   shuffle() {
     this.deck = new Deck();
     this.setState({cardsLeft: this.deck.getDeck().length});
@@ -146,7 +161,7 @@ class Table extends React.Component {
           hitButton={this.hit.bind(this)}
           stickButton={this.stick.bind(this)}
         />
-        <DealButton cardsNo={this.state.cardsLeft} deal={this.deal.bind(this)} turn={this.state.turn}/>
+        <DealButton cardsNo={this.state.cardsLeft} deal={this.deal.bind(this)} clearHand={this.state.clearHand}/>
         <ShuffleButton shuffle={this.shuffle.bind(this)} />
       </div>
     );

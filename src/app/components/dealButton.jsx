@@ -12,10 +12,17 @@ export default class DealButton extends React.Component {
     this.props.deal();
   }
 
+  /**
+   * using es6 template literal to toggle class
+   */
   render() {
     return (
       <div className="deal">
-        <button className="deck btn btn-primary" onClick={this.dealCards.bind(this)}>{this.props.turn?'clear cards':'deal cards'}</button>
+        <button
+          className={`deck btn btn-${this.props.clearHand?'primary':'warning'}`}
+          onClick={this.dealCards.bind(this)}>
+            {this.props.clearHand?'Deal':'Clear'}
+        </button>
         <p>{this.props.cardsNo}</p>
       </div>
     );
@@ -25,5 +32,5 @@ export default class DealButton extends React.Component {
 DealButton.propTypes = {
   cardsNo: React.PropTypes.number.isRequired,
   deal: React.PropTypes.func.isRequired,
-  turn: React.PropTypes.number
+  clearHand: React.PropTypes.bool.isRequired
 }

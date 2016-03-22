@@ -2,11 +2,9 @@
 
 export default class Game {
 
-  constructor() {
-    this.playerScore = 0;
-    this.dealerScore = 0;
-  }
-
+  /**
+   * pass the hand and return's the value of the hand
+   */
   calculateHand(hand) {
     let total = 0;
     let aces = 0;
@@ -50,6 +48,9 @@ export default class Game {
     return total;
   }
 
+  /**
+   * Checks if the player bust or not
+   */
   checkHandStatus(hand) {
     let result;
     let total = this.calculateHand(hand);
