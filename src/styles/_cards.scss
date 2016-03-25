@@ -1,0 +1,224 @@
+// sprites for the cards
+.cards {
+  background-image: url('../img/card.png');
+  height: 190px;
+  width: 140px;
+  display: inline-block;
+  margin: 0;
+
+  // Clubs -----
+
+  &.c2 {
+    background-position: -280px -1140px;
+  }
+
+  &.c3 {
+    background-position: -700px -190px;
+  }
+
+  &.c4 {
+    background-position: -700px 0px;
+  }
+
+  &.c5 {
+    background-position: -560px -1710;
+  }
+
+  &.c6 {
+    background-position: -560px -1520px;
+  }
+
+  &.c7 {
+    background-position: -560px -1330px;
+  }
+
+  &.c8 {
+    background-position: -560px -1140px;
+  }
+
+  &.c9 {
+    background-position: -560px -950px;
+  }
+
+  &.c10 {
+    background-position: -560px -760px;
+  }
+
+  &.cj {
+    background-position: -560px -380px;
+  }
+
+  &.cq {
+    background-position: -560px 0px;
+  }
+
+  &.ck {
+    background-position: -560px -190px;
+  }
+
+  &.ca {
+    background-position: -560px -570px;
+  }
+
+  // Diamonds ------
+
+  &.d2 {
+    background-position: -420px -1710px;
+  }
+
+  &.d3 {
+    background-position: -420px -1520px;
+  }
+
+  &.d4 {
+    background-position: -420px -1330px;
+  }
+
+  &.d5 {
+    background-position: -420px -1140px;
+  }
+
+  &.d6 {
+    background-position: -420px -950px;
+  }
+
+  &.d7 {
+    background-position: -420px -760px;
+  }
+
+  &.d8 {
+    background-position: -420px -570px;
+  }
+
+  &.d9 {
+    background-position: -420px -380px;
+  }
+
+  &.d10 {
+    background-position: -420px -190px;
+  }
+
+  &.dj {
+    background-position: -280px -1710px;
+  }
+
+  &.dq {
+    background-position: -280px -1330px;
+  }
+
+  &.dk {
+    background-position: -280px -1520px;
+  }
+
+  &.da {
+    background-position: -560px 0px;
+  }
+
+  // Hearts -----
+
+  &.h2 {
+    background-position: -700px -380px;
+  }
+
+  &.h3 {
+    background-position: -280px -950px;
+  }
+
+  &.h4 {
+    background-position: -280px -760px;
+  }
+
+  &.h5 {
+    background-position: -280px -570px;
+  }
+
+  &.h6 {
+    background-position: -280px -380px;
+  }
+
+  &.h7 {
+    background-position: -280px -190px;
+  }
+
+  &.h8 {
+    background-position: -280px 0px;
+  }
+
+  &.h9 {
+    background-position: -140px -1710px;
+  }
+
+  &.h10 {
+    background-position: -140px -1520px;
+  }
+
+  &.hj {
+    background-position: -140px -1140px;
+  }
+
+  &.hq {
+    background-position: -140px -760px;
+  }
+
+  &.hk {
+    background-position: -140px -950px;
+  }
+
+  &.ha {
+    background-position: -140px -1330px;
+  }
+
+  // Spades -----
+
+  &.s2 {
+    background-position: -140px -380px;
+  }
+
+  &.s3 {
+    background-position: -140px -190;
+  }
+
+  &.s4 {
+    background-position: -140px 0px;
+  }
+
+  &.s5 {
+    background-position: 0px -1710px;
+  }
+
+  &.s6 {
+    background-position: 0px -1520px;
+  }
+
+  &.s7 {
+    background-position: 0px -1330px;
+  }
+
+  &.s8 {
+    background-position: 0px -1140px;
+  }
+
+  &.s9 {
+    background-position: 0px -950px;
+  }
+
+  &.s10 {
+    background-position: 0px -760px;
+  }
+
+  &.sj {
+    background-position: 0px -380px;
+  }
+
+  &.sq {
+    background-position: 0px 0px;
+  }
+
+  &.sk {
+    background-position: 0px -190px;
+  }
+
+  &.sa {
+    background-position: 0px -570px;
+  }
+}

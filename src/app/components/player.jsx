@@ -3,6 +3,7 @@
 import React from 'react';
 
 import ActionButton from './actionButton.jsx';
+import Card from './card.jsx';
 
 export default class Player extends React.Component {
 
@@ -19,6 +20,13 @@ export default class Player extends React.Component {
           && <ActionButton hitButton={this.props.hitButton} stickButton={this.props.stickButton}/>
         }
         <p>Hand: {this.props.hand}</p>
+        {
+          this.props.hand.map(
+            function(card) {
+              return( <Card card={card} /> );
+            }
+          )
+        }
         <p>score: {this.props.score}</p>
       </div>
     );

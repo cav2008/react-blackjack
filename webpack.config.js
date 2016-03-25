@@ -22,12 +22,13 @@ var config = {
       // react converter
       {test: /\.jsx?$/, exclude: /(node_modules|bower_components)/, loader: 'babel', query: {presets: ['react', 'es2015']}},
       // bootstrap include
-      {test:/bootstrap-sass[\/\\]assets[\/\\]javascripts[\/\\]/, loader: 'imports?jQuery=jquery'},
+      {test: /bootstrap-sass[\/\\]assets[\/\\]javascripts[\/\\]/, loader: 'imports?jQuery=jquery'},
       // font converter
       {test: /\.(woff|woff2)$/, loader: "url-loader?limit=10000&mimetype=application/font-woff"},
       {test: /\.ttf(\?v=\d+\.\d+\.\d+)?$/, loader: "url?limit=10000&minetype=application/octet-stream"},
       {test: /\.eot(\?v=\d+\.\d+\.\d+)?$/, loader: "file"},
       {test: /\.svg(\?v=\d+\.\d+\.\d+)?$/, loader: "url?limit=10000&minetype=image/svg+xml"},
+      {test: /\.png(\?v=\d+\.\d+\.\d+)?$/, loader: "url"},
       // style converter and include
       {test: /\.scss$/, loader: "style!css!sass"}
     ]
