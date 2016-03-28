@@ -1,0 +1,41 @@
+.players {
+  color: white;
+  text-transform: capitalize;
+
+  .score {
+    margin: 10px 0;
+    h4 {
+      display: inline-block;
+    }
+
+    .counter {
+      color: black;
+      padding: 10px;
+      background-color: white;
+      border-radius: 5px;
+      font-size: 21px;
+      font-weight: bolder;
+      margin-left: 10px;
+    }
+  }
+
+  .hit, .stick {
+    margin: 5px 10px;
+    border-radius: 5px;
+    padding: 5px 20px;
+    font-size: 18px;
+  }
+}
+
+.player {
+  position: relative;
+  top: 40%;
+  transform: translateY(-40%);
+}
+
+.dealer {
+  position: relative;
+  top: 10%;
+  transform: translateY(-20%);
+}
+

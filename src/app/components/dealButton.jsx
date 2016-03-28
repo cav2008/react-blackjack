@@ -18,11 +18,11 @@ export default class DealButton extends React.Component {
   render() {
     return (
       <div className="deal">
-        <button
-          className={`deck btn btn-${this.props.clearHand?'primary':'warning'}`}
+        <div
+          className={`deck ${this.props.clearHand?'give':'clear'}`}
           onClick={this.dealCards.bind(this)}>
             {this.props.clearHand?'Deal':'Clear'}
-        </button>
+        </div>
         <p>{this.props.cardsNo}</p>
       </div>
     );

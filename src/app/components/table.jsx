@@ -152,7 +152,7 @@ class Table extends React.Component {
 
   render() {
     return (
-      <div className="table">
+      <div className="table container">
         <Player playerType="dealer" hand={this.state.dealerHand} score={this.state.dealerScore}/>
         <Player
           playerType="player"

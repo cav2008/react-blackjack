@@ -1,10 +1,17 @@
+.card-space {
+  height: 210px;
+  background-color: #0D501A;
+  border: 1px solid #D5E8D7;
+  padding-top: 9px;
+}
+
 // sprites for the cards
 .cards {
   background-image: url('../img/card.png');
   height: 190px;
   width: 140px;
   display: inline-block;
-  margin: 0;
+  margin: 0 15px 0 0;
 
   // Clubs -----
 
@@ -111,7 +118,7 @@
   }
 
   &.da {
-    background-position: -560px 0px;
+    background-position: -420px 0px;
   }
 
   // Hearts -----
@@ -222,3 +229,27 @@
     background-position: 0px -570px;
   }
 }
+
+.deal {
+  display: inline-block;
+  position: absolute;
+  right: 8%;
+  top: 43%;
+
+  .deck {
+    background-image: url('../img/card-back.png');
+    height: 190px;
+    width: 140px;
+    display: inline-block;
+    background-position: -280px -190px;
+    padding-top: 50%;
+    cursor: pointer;
+    font-size: 32px;
+    font-weight: bold;
+    text-transform: uppercase;
+
+    box-shadow: 0 0.0625em 0.1875em 0 rgba(0, 0, 0, 0.1), 0 0.5em 0 -0.25em #f2f2f2, 0 0.5em 0.1875em -0.25em rgba(0, 0, 0, 0.1), 0 1em 0 -0.5em #e5e5e5, 0 1em 0.1875em -0.5em rgba(0, 0, 0, 0.1);
+
+  }
+}
+

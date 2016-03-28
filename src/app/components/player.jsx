@@ -4,6 +4,7 @@ import React from 'react';
 
 import ActionButton from './actionButton.jsx';
 import Card from './card.jsx';
+import Score from './score.jsx';
 
 export default class Player extends React.Component {
 
@@ -12,22 +13,25 @@ export default class Player extends React.Component {
   }
 
   render() {
+    console.log(this.props.playerType, this.props.hand);
     return (
-      <div className="player">
-        <p>Player {this.props.playerType}</p>
+      <div className={`players ${this.props.playerType}`}>
+        <h2>{this.props.playerType}</h2>
+        <Score score={this.props.score}/>
+        {/*<p>Hand: {this.props.hand}</p>*/}
+        <div className="card-space">
+          {
+            this.props.hand.map(
+              function(card) {
+                return( <Card card={card} /> );
+              }
+            )
+          }
+        </div>
         {
           this.props.playerType === 'player'
           && <ActionButton hitButton={this.props.hitButton} stickButton={this.props.stickButton}/>
         }
-        <p>Hand: {this.props.hand}</p>
-        {
-          this.props.hand.map(
-            function(card) {
-              return( <Card card={card} /> );
-            }
-          )
-        }
-        <p>score: {this.props.score}</p>
       </div>
     );
   }
@@ -39,8 +43,4 @@ Player.propTypes = {
   score: React.PropTypes.number,
   hitButton: React.PropTypes.func,
   stickButton: React.PropTypes.func
-}
-
-Player.defaultProps = {
-  score: 0
 }
