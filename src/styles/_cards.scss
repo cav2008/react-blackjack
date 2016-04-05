@@ -1,8 +1,9 @@
 .card-space {
   height: 210px;
   background-color: #0D501A;
-  border: 1px solid #D5E8D7;
-  padding-top: 9px;
+  border: 3px solid #D5E8D7;
+  padding-top: 7px;
+  border-radius: 5px;
 }
 
 // sprites for the cards
@@ -234,7 +235,7 @@
   display: inline-block;
   position: absolute;
   right: 8%;
-  top: 43%;
+  top: 36%;
 
   .deck {
     background-image: url('../img/card-back.png');
@@ -250,6 +251,41 @@
 
     box-shadow: 0 0.0625em 0.1875em 0 rgba(0, 0, 0, 0.1), 0 0.5em 0 -0.25em #f2f2f2, 0 0.5em 0.1875em -0.25em rgba(0, 0, 0, 0.1), 0 1em 0 -0.5em #e5e5e5, 0 1em 0.1875em -0.5em rgba(0, 0, 0, 0.1);
 
+    &.give {
+      color: #02EC02;
+    }
+
+    &.clear {
+      color: #940303;
+    }
   }
 }
 
+.used-cards {
+  display: inline-block;
+  position: absolute;
+  left: 6%;
+  top: 35%;
+  padding: 10px;
+  border: 5px dashed #333;
+  border-radius: 5px;
+
+  .shuffle {
+    height: 190px;
+    width: 140px;
+    background-position: 0 -190px;
+    padding-top: 55%;
+    cursor: pointer;
+    font-size: 25px;
+    font-weight: bold;
+    text-transform: uppercase;
+
+    &.used {
+      background-image: url('../img/card-back.png');
+    }
+
+    &.none {
+      background-image: none;
+    }
+  }
+}

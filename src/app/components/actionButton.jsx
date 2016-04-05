@@ -20,7 +20,7 @@ export default class ActionButton extends React.Component {
     return (
       <div className="actionBtn">
         <button className="hit btn-success" onClick={this.hitClick.bind(this)}>Hit</button>
-        <button className='stick btn-danger' onClick={this.stickClick.bind(this)}>Stick</button>
+        <button className='stick btn-danger' onClick={this.stickClick.bind(this)}>Stand</button>
       </div>
     );
   }

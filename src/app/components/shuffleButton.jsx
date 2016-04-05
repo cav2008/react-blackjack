@@ -10,13 +10,22 @@ export default class ShuffleButton extends React.Component {
 
   render() {
     return (
-      <div className="shuffle">
-        <button className="btn btn-info" onClick={this.shuffleCards.bind(this)}>Shuffle</button>
+      <div className="used-cards">
+        <div
+          className={`shuffle ${(this.props.cardsNo < this.props.cardsTotal) ? 'used':'none'}`} onClick={this.shuffleCards.bind(this)}>
+            {`${(this.props.cardsNo < this.props.cardsTotal) ? 'Shuffle' : ''}`}
+        </div>
       </div>
     );
   }
 }
 
 ShuffleButton.propTypes = {
-  shuffle: React.PropTypes.func.isRequired
+  shuffle: React.PropTypes.func.isRequired,
+  cardsNo: React.PropTypes.number.isRequired,
+  cardsTotal: React.PropTypes.number.isRequired
+}
+
+ShuffleButton.defaultProps = {
+  cardsNo: 0
 }

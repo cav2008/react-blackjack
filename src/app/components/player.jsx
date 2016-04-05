@@ -16,8 +16,13 @@ export default class Player extends React.Component {
     console.log(this.props.playerType, this.props.hand);
     return (
       <div className={`players ${this.props.playerType}`}>
-        <h2>{this.props.playerType}</h2>
-        <Score score={this.props.score}/>
+        {
+          this.props.playerType === 'player' &&
+          <div>
+            <h2>{this.props.playerType}</h2>
+            <Score score={this.props.score}/>
+          </div>
+        }
         {/*<p>Hand: {this.props.hand}</p>*/}
         <div className="card-space">
           {
@@ -31,6 +36,13 @@ export default class Player extends React.Component {
         {
           this.props.playerType === 'player'
           && <ActionButton hitButton={this.props.hitButton} stickButton={this.props.stickButton}/>
+        }
+        {
+          this.props.playerType === 'dealer' &&
+          <div>
+            <Score score={this.props.score}/>
+            <h2>{this.props.playerType}</h2>
+          </div>
         }
       </div>
     );

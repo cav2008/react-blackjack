@@ -12,6 +12,7 @@ import Deck from '../model/deck.js';
 import Player from './player.jsx';
 import DealButton from './dealButton.jsx';
 import ShuffleButton from './shuffleButton.jsx';
+import ModeButton from './modeButton.jsx';
 
 class Table extends React.Component {
 
@@ -24,6 +25,8 @@ class Table extends React.Component {
     this.deck = new Deck();
     this.game = new Game();
     this.state = {
+      hardMode: false,
+      cardsTotal: this.deck.getDeck().length,
       cardsLeft: this.deck.getDeck().length,
       playerHand: [],
       dealerHand: [],
@@ -94,23 +97,59 @@ class Table extends React.Component {
       let playerHandValue = this.game.calculateHand(this.state.playerHand);
       console.log('player hand', playerHandValue);
 
+      // BEAST MODE
       // keep looping until dealer has the same or higher card value
-      while(playerHandValue > this.game.calculateHand(this.state.dealerHand) && (this.deck.getDeck().length != 0)) {
-        this.dealCard(this.state.dealerHand, 'dealerHand');
-      }
+      if(this.state.hardMode) {
+        console.log('hard mode');
+        let checker = function() {
+          this.dealCard(this.state.dealerHand, 'dealerHand');
+          if(this.game.calculateHand(this.state.dealerHand) >= playerHandValue || this.game.calculateHand(this.state.dealerHand) > 21 || (this.deck.getDeck().length === 0)) {
+            clearInterval(timer);
 
-      let dealerHandValue = this.game.calculateHand(this.state.dealerHand);
-      console.log('dealer hand', dealerHandValue);
+            let dealerHandValue = this.game.calculateHand(this.state.dealerHand);
+            console.log('dealer hand', dealerHandValue);
 
-      // detemine outcome of dealer's final hand
-      if(dealerHandValue > 21 || playerHandValue > dealerHandValue) {
-        this.gameOver('player');
-      }
-      else if(dealerHandValue > playerHandValue) {
-        this.gameOver('dealer');
-      }
-      else {
-        this.gameOver('draw');
+            // detemine outcome of dealer's final hand
+            if(dealerHandValue > 21 || playerHandValue > dealerHandValue) {
+              this.gameOver('player');
+            }
+            else if(dealerHandValue > playerHandValue) {
+              this.gameOver('dealer');
+            }
+            else {
+              this.gameOver('draw');
+            }
+          }
+        };
+
+        let timer = setInterval(checker.bind(this), 800);
+
+      } else {
+        // NORMAL MODE
+        // dealer must draw until value over 16
+        console.log('normal mode');
+        let checker = function() {
+          this.dealCard(this.state.dealerHand, 'dealerHand');
+          if(this.game.calculateHand(this.state.dealerHand) > 16 || (this.deck.getDeck().length === 0)) {
+            clearInterval(timer);
+
+            let dealerHandValue = this.game.calculateHand(this.state.dealerHand);
+            console.log('dealer hand', dealerHandValue);
+
+            // detemine outcome of dealer's final hand
+            if(dealerHandValue > 21 || playerHandValue > dealerHandValue) {
+              this.gameOver('player');
+            }
+            else if(dealerHandValue > playerHandValue) {
+              this.gameOver('dealer');
+            }
+            else {
+              this.gameOver('draw');
+            }
+          }
+        };
+
+        let timer = setInterval(checker.bind(this), 800);
       }
     }
   }
@@ -150,6 +189,10 @@ class Table extends React.Component {
     this.setState({cardsLeft: this.deck.getDeck().length});
   }
 
+  toggleMode() {
+    this.setState({hardMode: !this.state.hardMode});
+  }
+
   render() {
     return (
       <div className="table container">
@@ -162,7 +205,12 @@ class Table extends React.Component {
           stickButton={this.stick.bind(this)}
         />
         <DealButton cardsNo={this.state.cardsLeft} deal={this.deal.bind(this)} clearHand={this.state.clearHand}/>
-        <ShuffleButton shuffle={this.shuffle.bind(this)} />
+        <ShuffleButton
+          shuffle={this.shuffle.bind(this)}
+          cardsTotal={this.state.cardsTotal}
+          cardsNo={this.state.cardsLeft}
+        />
+        <ModeButton toggleMode={this.toggleMode.bind(this)}/>
       </div>
     );
   }
