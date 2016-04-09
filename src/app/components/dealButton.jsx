@@ -23,7 +23,8 @@ export default class DealButton extends React.Component {
           onClick={this.dealCards.bind(this)}>
             {this.props.clearHand?'Deal':'Clear'}
         </div>
-        <p>{this.props.cardsNo}</p>
+        <p>Cards left: {this.props.cardsNo}</p>
+        <p className="tip">Shuffle when less than 20 cards</p>
       </div>
     );
   }

@@ -3,6 +3,7 @@
 import React from 'react';
 import { render } from 'react-dom';
 import 'bootstrap-loader';
+import $ from 'jquery';
 // import styles
 import '../../styles/app.scss';
 // import models
@@ -48,6 +49,24 @@ class Table extends React.Component {
       this.dealCard(this.state.dealerHand, 'dealerHand');
       this.dealCard(this.state.playerHand, 'playerHand');
       this.setState({turn: 1, clearHand: false});
+
+      // stacks all card with a relative margin, to give a 3d effect
+      let left = 0;
+      let step = 0.8;
+      let i = 1;
+
+      $('.shuffle').each(function() {
+        $(this).css({'z-index': i});
+        $(this).css({
+            'margin-left': left + 'px'
+        });
+        $(this).css({
+            'margin-top': 0 + 'px'
+        });
+        left = left + step;
+        i++;
+      });
+
     } else {
       this.clearHand();
     }
@@ -122,7 +141,7 @@ class Table extends React.Component {
           }
         };
 
-        let timer = setInterval(checker.bind(this), 800);
+        let timer = setInterval(checker.bind(this), 400);
 
       } else {
         // NORMAL MODE

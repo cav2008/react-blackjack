@@ -238,6 +238,7 @@
   top: 36%;
 
   .deck {
+    border-radius: 5px;
     background-image: url('../img/card-back.png');
     height: 190px;
     width: 140px;
@@ -249,7 +250,7 @@
     font-weight: bold;
     text-transform: uppercase;
 
-    box-shadow: 0 0.0625em 0.1875em 0 rgba(0, 0, 0, 0.1), 0 0.5em 0 -0.25em #f2f2f2, 0 0.5em 0.1875em -0.25em rgba(0, 0, 0, 0.1), 0 1em 0 -0.5em #e5e5e5, 0 1em 0.1875em -0.5em rgba(0, 0, 0, 0.1);
+    box-shadow: 12px 0em 0.1875em 0 rgba(0, 0, 0, 0.1), 7px 0em 0 -0.09em #f2f2f2, 25px 0em 0.1875em -0.25em rgba(0, 0, 0, 0.1), 14px 0em 0 -0.19em #e5e5e5, 35px 0em 0.1875em -0.5em rgba(0, 0, 0, 0.1);
 
     &.give {
       color: #02EC02;
@@ -259,6 +260,15 @@
       color: #940303;
     }
   }
+
+  p {
+    color: white;
+    margin: 0;
+  }
+  .tip {
+    color: grey;
+    font-size: 11px;
+  }
 }
 
 .used-cards {
@@ -266,22 +276,27 @@
   position: absolute;
   left: 6%;
   top: 35%;
-  padding: 10px;
+  padding: 10px 10px 10px 15px;
   border: 5px dashed #333;
   border-radius: 5px;
+  height: 220px;
+  width: 190px;
 
   .shuffle {
+    position: absolute;
     height: 190px;
     width: 140px;
     background-position: 0 -190px;
-    padding-top: 55%;
+    padding-top: 50%;
     cursor: pointer;
     font-size: 25px;
     font-weight: bold;
     text-transform: uppercase;
+    border-radius: 5px;
 
     &.used {
       background-image: url('../img/card-back.png');
+      box-shadow: 12px 0px 0.5px rgba(45, 45, 45, 0.05);
     }
 
     &.none {
