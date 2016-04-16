@@ -2,14 +2,21 @@
 
 import React from 'react';
 import $ from 'jquery';
+import Sounds from '../utilities/sounds.js';
 
 export default class ShuffleButton extends React.Component {
+
+  constructor(props) {
+    super(props);
+    this.sounds = new Sounds();
+  }
 
   shuffleCards() {
     this.shuffleDeck();
 
+    this.sounds.playShuffle();
     // set timer to allow shuffle animatation to finish first (synchronous)
-    setTimeout(this.props.shuffle, 3200);
+    setTimeout(this.props.shuffle, 3500);
 
   }
 
@@ -18,7 +25,7 @@ export default class ShuffleButton extends React.Component {
     // create shuffle effect(just to show it to user)
     let i = 0;
     let time = 0;
-    let shuffle_time = 3;
+    let shuffle_time = 4;
     let counter = 0;
 
     $($('.shuffle').get().reverse()).each(function() {

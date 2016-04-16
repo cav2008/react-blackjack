@@ -9,11 +9,15 @@ import '../../styles/app.scss';
 // import models
 import Game from '../model/game.js';
 import Deck from '../model/deck.js';
+
+import Sounds from '../utilities/sounds.js';
+
 // import components
 import Player from './player.jsx';
 import DealButton from './dealButton.jsx';
 import ShuffleButton from './shuffleButton.jsx';
 import ModeButton from './modeButton.jsx';
+import Message from './message.jsx'
 
 class Table extends React.Component {
 
@@ -23,6 +27,7 @@ class Table extends React.Component {
    */
   constructor(props) {
     super(props);
+    this.sounds = new Sounds();
     this.deck = new Deck();
     this.game = new Game();
     this.state = {
@@ -34,6 +39,7 @@ class Table extends React.Component {
       playerScore: 0,
       dealerScore: 0,
       turn: 0,
+      message: '',
       clearHand: true
     };
   }
@@ -47,14 +53,19 @@ class Table extends React.Component {
     console.log('deal',this.state.clearHand);
     if(this.state.turn === 0 && (this.deck.getDeck().length >= 20) && (this.state.clearHand === true)) {
       this.dealCard(this.state.dealerHand, 'dealerHand');
-      this.dealCard(this.state.playerHand, 'playerHand');
-      this.setState({turn: 1, clearHand: false});
+      setTimeout(function() {
+        this.dealCard(this.state.playerHand, 'playerHand');
+        this.setState({turn: 1, clearHand: false});
+      }.bind(this), 300);
+
+      this.setState({message: ''});
 
       // stacks all card with a relative margin, to give a 3d effect
       let left = 0;
       let step = 0.8;
       let i = 1;
 
+      // add deck style to shuffle button
       $('.shuffle').each(function() {
         $(this).css({'z-index': i});
         $(this).css({
@@ -76,6 +87,7 @@ class Table extends React.Component {
    * method to add a card to the player's hand
    */
   dealCard(hand, player) {
+    this.sounds.playDraw();
     if(this.deck.getDeck().length != 0) {
       let cardHand = hand;
       let card = this.deck.drawCard();
@@ -99,7 +111,6 @@ class Table extends React.Component {
     if(this.state.turn === 1) {
       this.dealCard(this.state.playerHand, 'playerHand');
       if(this.game.checkHandStatus(this.state.playerHand) === 'bust') {
-        alert('bust');
         this.gameOver('dealer');
       }
     }
@@ -178,14 +189,20 @@ class Table extends React.Component {
    */
   gameOver(winner) {
     if(winner === 'player') {
+      this.sounds.playWin();
+      this.setState({message: 'Win'});
       this.setState({playerScore: ++this.state.playerScore});
       console.log('PLAYER win----');
     }
     else if(winner === 'dealer') {
+      this.sounds.playLose();
+      this.setState({message: 'Lose'});
       this.setState({dealerScore: ++this.state.dealerScore});
       console.log('DEALER win----');
     }
     else {
+      this.sounds.playDraw();
+      this.setState({message: 'Push'});
       console.log('DRAW----');
     }
 
@@ -204,6 +221,7 @@ class Table extends React.Component {
    * Generate a new deck (shuffle)
    */
   shuffle() {
+    this.clearHand();
     this.deck = new Deck();
     this.setState({cardsLeft: this.deck.getDeck().length});
   }
@@ -230,6 +248,7 @@ class Table extends React.Component {
           cardsNo={this.state.cardsLeft}
         />
         <ModeButton toggleMode={this.toggleMode.bind(this)}/>
+        <Message message={this.state.message}/>
       </div>
     );
   }

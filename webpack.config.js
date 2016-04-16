@@ -30,7 +30,10 @@ var config = {
       {test: /\.svg(\?v=\d+\.\d+\.\d+)?$/, loader: "url?limit=10000&minetype=image/svg+xml"},
       {test: /\.png(\?v=\d+\.\d+\.\d+)?$/, loader: "url"},
       // style converter and include
-      {test: /\.scss$/, loader: "style!css!sass"}
+      {test: /\.scss$/, loader: "style!css!sass"},
+      // sound files wav converter
+      {test: /\.wav$/, loader: "file"},
+      {test: /\.mp3$/, loader: "file"}
     ]
   },
   plugins: [
