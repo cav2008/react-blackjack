@@ -13,6 +13,7 @@ import cardSlide5 from '../../sounds/cardSlide5.wav';
 import cardSlide6 from '../../sounds/cardSlide6.wav';
 import cardSlide7 from '../../sounds/cardSlide7.wav';
 import cardSlide8 from '../../sounds/cardSlide8.wav';
+import empty from '../../sounds/empty.wav';
 
 export default class Sound {
 
@@ -30,6 +31,7 @@ export default class Sound {
     this.cardSlide6 = new Audio(cardSlide6);
     this.cardSlide7 = new Audio(cardSlide7);
     this.cardSlide8 = new Audio(cardSlide8);
+    this.empty = new Audio(empty);
 
     this.cardDraw = [
       this.cardSlide1,
@@ -66,5 +68,9 @@ export default class Sound {
 
   playDraw() {
     this.cardDraw[Math.floor(Math.random() * 8)].play();
+  }
+
+  playEmpty() {
+    this.empty.play();
   }
 }

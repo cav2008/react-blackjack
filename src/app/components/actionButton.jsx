@@ -4,10 +4,6 @@ import React from 'react';
 
 export default class ActionButton extends React.Component {
 
-  constructor(props) {
-    super(props);
-  }
-
   hitClick() {
     this.props.hitButton();
   }

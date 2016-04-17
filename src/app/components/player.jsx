@@ -13,7 +13,6 @@ export default class Player extends React.Component {
   }
 
   render() {
-    console.log(this.props.playerType, this.props.hand);
     return (
       <div className={`players ${this.props.playerType}`}>
         {

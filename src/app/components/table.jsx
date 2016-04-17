@@ -50,7 +50,6 @@ class Table extends React.Component {
    * otherwise the deal button turns in to clear hand to set up next game
    */
   deal() {
-    console.log('deal',this.state.clearHand);
     if(this.state.turn === 0 && (this.deck.getDeck().length >= 20) && (this.state.clearHand === true)) {
       this.dealCard(this.state.dealerHand, 'dealerHand');
       setTimeout(function() {
@@ -77,7 +76,8 @@ class Table extends React.Component {
         left = left + step;
         i++;
       });
-
+    } else if(this.deck.getDeck().length < 20) {
+      this.sounds.playEmpty();
     } else {
       this.clearHand();
     }
@@ -120,12 +120,9 @@ class Table extends React.Component {
    * function for player stick and dealers turn
    */
   stick() {
-    console.log('---------STICK----------');
-
     if(this.state.turn === 1) {
       // get player's hand total value
       let playerHandValue = this.game.calculateHand(this.state.playerHand);
-      console.log('player hand', playerHandValue);
 
       // BEAST MODE
       // keep looping until dealer has the same or higher card value
@@ -137,7 +134,6 @@ class Table extends React.Component {
             clearInterval(timer);
 
             let dealerHandValue = this.game.calculateHand(this.state.dealerHand);
-            console.log('dealer hand', dealerHandValue);
 
             // detemine outcome of dealer's final hand
             if(dealerHandValue > 21 || playerHandValue > dealerHandValue) {
@@ -164,7 +160,6 @@ class Table extends React.Component {
             clearInterval(timer);
 
             let dealerHandValue = this.game.calculateHand(this.state.dealerHand);
-            console.log('dealer hand', dealerHandValue);
 
             // detemine outcome of dealer's final hand
             if(dealerHandValue > 21 || playerHandValue > dealerHandValue) {
@@ -192,22 +187,21 @@ class Table extends React.Component {
       this.sounds.playWin();
       this.setState({message: 'Win'});
       this.setState({playerScore: ++this.state.playerScore});
-      console.log('PLAYER win----');
+      console.log('PLAYER win');
     }
     else if(winner === 'dealer') {
       this.sounds.playLose();
       this.setState({message: 'Lose'});
       this.setState({dealerScore: ++this.state.dealerScore});
-      console.log('DEALER win----');
+      console.log('DEALER win');
     }
     else {
       this.sounds.playDraw();
       this.setState({message: 'Push'});
-      console.log('DRAW----');
+      console.log('DRAW');
     }
 
     this.setState({turn: 0});
-    console.log(this.state.playerScore, this.state.dealerScore);
   }
 
   /**
